@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Checkboxes - Dark Mode</title>
+    <style>
+        /* Dark mode styling */
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #dddddd;
+        }
+        #message {
+            color: #ffffff;
+            font-size: 1.2em;
+        }
+        .checkbox-container {
+            margin-top: 20px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        label {
+            color: #ffffff;
+        }
+        div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Checkboxes</h1>
+    <p id="message"></p>
+    <div class="checkbox-container" id="checkboxContainer">
+        <!-- Checkboxes will be added here -->
+    </div>
+
+    <script>
+        // Function to generate a random number of checkboxes
+        function generateRandomCheckboxes() {
+            const min = 2;
+            const max = 23;
+            const numberOfCheckboxes = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            // Update the message with the number of checkboxes
+            const message = document.getElementById('message');
+            message.textContent = `There should be ${numberOfCheckboxes} checkboxes.`;
+
+            const container = document.getElementById('checkboxContainer');
+            container.innerHTML = ''; // Clear any existing checkboxes
+
+            for (let i = 1; i <= numberOfCheckboxes; i++) {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `checkbox-${i}`;
+                checkbox.name = `checkbox-${i}`;
+
+                const label = document.createElement('label');
+                label.htmlFor = `checkbox-${i}`;
+                label.innerText = ` Checkbox ${i}`;
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+
+                container.appendChild(div);
+            }
+        }
+
+        // Generate checkboxes when the page loads
+        window.onload = generateRandomCheckboxes;
+    </script>
+</body>
+</html>
